@@ -64,7 +64,7 @@ engine:                      # Engine settings.
     Slow Mover: 10
     MultiPV: 2
     Use NNUE: true
-    EvalFile: standard:nn-938525872610.nnue
+    EvalFile: nn-938525872610.nnue
     go_commands:             # Additional options to pass to the UCI go command.
       depth: 20              # Search depth ply only.
 #     movetime: 1000         # Integer. Search exactly movetime milliseconds.
