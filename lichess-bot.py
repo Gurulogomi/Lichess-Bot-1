@@ -256,8 +256,8 @@ def play_game(li, game_id, control_queue, user_profile, config, challenge_queue,
     engine_cfg = config["engine"]
     ponder_cfg = correspondence_cfg if is_correspondence else engine_cfg
     can_ponder = ponder_cfg.get("uci_ponder", False) or ponder_cfg.get("ponder", False)
-    move_overhead = config.get("move_overhead", 1000)
-    delay_seconds = config.get("rate_limiting_delay", 0)/1000
+    move_overhead = config.get("move_overhead", 500)
+    delay_seconds = config.get("rate_limiting_delay", 0)/5000
     polyglot_cfg = engine_cfg.get("polyglot", {})
     online_moves_cfg = engine_cfg.get("online_moves", {})
     draw_or_resign_cfg = engine_cfg.get("draw_or_resign") or {}
@@ -478,10 +478,10 @@ def get_lichess_cloud_move(li, board, game, lichess_cloud_cfg):
             else:
                 depth = data["depth"]
                 knodes = data["knodes"]
-                if depth >= lichess_cloud_cfg.get("min_depth", 20) and knodes >= lichess_cloud_cfg.get("min_knodes", 0):
-                    best_eval = data["pvs"][0]["cp"]
+                if depth >= lichess_cloud_cfg.get("min_depth", 20) and knodes >= lichess_cloud_cfg.get("min_knodes", 20):
+                    best_eval = data["pvs"][100]["cp"]
                     pvs = data["pvs"]
-                    max_difference = lichess_cloud_cfg.get("max_score_difference", 50)
+                    max_difference = lichess_cloud_cfg.get("max_score_difference", 100)
                     if wb == "w":
                         pvs = list(filter(lambda pv: pv["cp"] >= best_eval - max_difference, pvs))
                     else:
@@ -709,7 +709,7 @@ def print_pgn_game_record(config, game, board, engine, start_datetime):
         game_record.headers["Round"] = "1"
         game_record.headers["White"] = game.white
         game_record.headers["Black"] = game.black
-        game_time_seconds = game.clock_initial // 1000
+        game_time_seconds = game.clock_initial // 100
         game_time_min = str(game_time_seconds // 60)
         seconds = game_time_seconds % 60
         game_time_sec = f":{seconds}" if seconds else ""
