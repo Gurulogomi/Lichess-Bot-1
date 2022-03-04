@@ -58,15 +58,14 @@ engine:                      # Engine settings.
   homemade_options:
 #   Hash: 256
   uci_options:               # Arbitrary UCI options passed to the engine.
-    Move Overhead: 400       # Increase if your bot flags games too often.
-    Threads: 4               # Max CPU threads the engine can use.
-    Hash: 128                # Max memory (in megabytes) the engine can allocate.
-    Slow Mover: 10
-    MultiPV: 2
-    Use NNUE: true
-    EvalFile: nn-938525872610.nnue
-    go_commands:             # Additional options to pass to the UCI go command.
-      depth: 20              # Search depth ply only.
+   Threads: 4
+   Ponder: false
+   Hash: 16
+   MultiPV: 1
+   Skill Level: 20
+   Move Overhead: 30
+   Minimum Thinking Time: 20
+   Slow Mover: 80
 #     movetime: 1000         # Integer. Search exactly movetime milliseconds.
 # xboard_options:            # Arbitrary XBoard options passed to the engine.
 #   cores: "4"
