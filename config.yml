@@ -59,12 +59,11 @@ engine:                      # Engine settings.
 #   Hash: 256
   uci_options:               # Arbitrary UCI options passed to the engine.
    Threads: 4
-   Ponder: false
-   Hash: 16
+   Hash: 128
    MultiPV: 1
    Skill Level: 20
-   Move Overhead: 30
-   Slow Mover: 80
+   Move Overhead: 300
+   ponder: true
 #     movetime: 1000         # Integer. Search exactly movetime milliseconds.
 # xboard_options:            # Arbitrary XBoard options passed to the engine.
 #   cores: "4"
@@ -82,6 +81,7 @@ engine:                      # Engine settings.
 abort_time: 20               # Time to abort a game in seconds when there is no activity.
 fake_think_time: false       # Artificially slow down the bot to pretend like it's thinking.
 rate_limiting_delay: 0       # Time (in ms) to delay after sending a move to prevent "Too Many Requests" errors. 
+Move_Overhead: 700
 correspondence:
     move_time: 60            # Time in seconds to search in correspondence games.
     checkin_period: 600      # How often to check for opponent moves in correspondence games after disconnecting.
